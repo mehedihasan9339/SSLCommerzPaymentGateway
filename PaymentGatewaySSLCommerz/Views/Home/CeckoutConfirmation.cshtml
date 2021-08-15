@@ -1,0 +1,14 @@
+﻿@{
+	ViewData["Title"] = "Confirmation";
+}
+
+<div class="text-center">
+	@if (ViewBag.status == true)
+	{
+		<h1 class="display-4 text-success"> @ViewBag.currency @ViewBag.amount has been <span class="font-weight-bold">paid</span> successfully!</h1>
+	}
+	else
+	{
+		<h1 class="display-4 text-danger"> @ViewBag.currency @ViewBag.amount payment <span class="font-weight-bold">faild</span>!</h1>
+	}
+</div>

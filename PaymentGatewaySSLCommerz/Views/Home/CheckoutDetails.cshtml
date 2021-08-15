@@ -1,0 +1,64 @@
+﻿@model IEnumerable<ProductViewModel>
+
+	<link href="~/css/cart.css" rel="stylesheet" />
+
+<div class="container-fluid mt-5">
+	<h2 class="mb-5 text-center">Shopping Cart</h2>
+	<div class="row justify-content-center">
+		<div class="col-md-8">
+			<div class="table-responsive">
+				<form action="/Home/Checkout" method="post">
+					<table id="myTable" class="table">
+						<thead>
+							<tr>
+								<th>Product</th>
+								<th>Name</th>
+								<th>Qty</th>
+								<th>Price</th>
+								<th class="text-right"><span id="amount" class="amount">Amount</span> </th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach (var item in Model)
+							{
+								<tr>
+									<td>
+										<div class="product-img">
+											<div class="img-prdct"><img src="@item.purl" style="height: 50px;"></div>
+										</div>
+									</td>
+									<td>
+										<input type="hidden" name="name" value="@item.pname" />
+										<p>@item.pname</p>
+									</td>
+									<td>
+										<div class="button-container">
+											<button class="cart-qty-plus" type="button" value="+">+</button>
+											<input type="text" name="qty" min="0" class="qty form-control" value="1" />
+											<button class="cart-qty-minus" type="button" value="-">-</button>
+										</div>
+									</td>
+									<td>
+										<input type="text" value="@item.pprice" class="price form-control" name="price" readonly>
+									</td>
+									<td align="right">$ <span id="amount" class="amount">@item.pprice</span></td>
+								</tr>
+							}
+						</tbody>
+						<tfoot>
+							<tr>
+								<td colspan="3"></td>
+								<td class="float-md-right"><input type="submit" value="CHECKOUT" class="btn btn-success" /></td>
+								<td align="right"><strong>TOTAL = $  <span id="total" class="total">0</span></strong></td>
+							</tr>
+						</tfoot>
+					</table>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+@section Scripts{ 
+	<script src="~/js/cart.js"></script>
+}
